@@ -1,73 +1,224 @@
-Create a professional, modern, fast, mobile-friendly website named "All India Govt Jobs" that provides comprehensive information about government jobs, recruitment notifications, admit cards, results, answer keys, admissions, exams, and important documents across India.
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="All India Govt Jobs - सरकारी नौकरी नोटिफिकेशन, एडमिट कार्ड, रिजल्ट, आंसर की और एडमिशन अपडेट।">
+  <title>All India Govt Jobs - Latest Jobs, Admit Cards, Results</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #f3f5f8; color: #202938; }
+    header { background: #003366; color: white; padding: 24px 16px; text-align: center; }
+    header h1 { margin: 0 0 8px; font-size: clamp(25px, 4vw, 36px); }
+    header p { margin: 0; }
+    nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; background: #222; padding: 8px; }
+    nav a { color: white; text-decoration: none; padding: 10px 12px; border-radius: 5px; }
+    nav a:hover, nav a:focus { background: #444; }
+    .container { width: min(1100px, 100% - 28px); margin: 22px auto; }
+    .search-box { display: flex; gap: 8px; margin-bottom: 18px; }
+    .search-box input { flex: 1; min-width: 0; padding: 13px; border: 1px solid #cbd3df; border-radius: 8px; font-size: 16px; }
+    button { border: 0; border-radius: 8px; background: #003366; color: white; padding: 12px 18px; cursor: pointer; font-size: 15px; }
+    button:hover { background: #074a8e; }
+    .notice { background: #fff5d7; border: 1px solid #f0d58a; border-radius: 8px; padding: 12px; margin-bottom: 18px; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .card { background: white; border: 1px solid #e0e5ec; border-radius: 10px; padding: 17px; box-shadow: 0 2px 7px #10213a0a; }
+    .card h2 { margin: 0 0 12px; color: #003366; font-size: 20px; border-bottom: 2px solid #e5ebf3; padding-bottom: 9px; }
+    .card ul { list-style: none; margin: 0; padding: 0; }
+    .card li { padding: 10px 0; border-bottom: 1px solid #edf0f4; }
+    .card li:last-child { border-bottom: 0; }
+    .card a { color: #b51f24; text-decoration: none; }
+    .card a:hover { text-decoration: underline; }
+    .tag { display: inline-block; background: #e7f1ff; color: #174a83; padding: 3px 7px; border-radius: 5px; font-size: 12px; margin: 3px 3px 0 0; }
+    .section-title { margin: 24px 0 12px; color: #003366; }
+    .job-list { background: white; border: 1px solid #e0e5ec; border-radius: 10px; overflow: hidden; }
+    .job-row { display: grid; grid-template-columns: 1.5fr 1fr 1fr auto; gap: 12px; align-items: center; padding: 14px 16px; border-bottom: 1px solid #e8edf3; }
+    .job-row:last-child { border-bottom: 0; }
+    .job-row strong { color: #003366; }
+    .muted { color: #657084; font-size: 13px; }
+    .empty { display: none; padding: 18px; color: #657084; text-align: center; }
+    footer { background: #172536; color: white; text-align: center; padding: 22px 14px; margin-top: 30px; }
+    footer a { color: #d7e8ff; }
+    @media (max-width: 760px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .job-row { grid-template-columns: 1fr 1fr; }
+      .job-row button { justify-self: start; }
+    }
+    @media (max-width: 480px) {
+      .grid { grid-template-columns: 1fr; }
+      .search-box { flex-direction: column; }
+      nav { justify-content: flex-start; }
+      nav a { padding: 9px; }
+      .job-row { grid-template-columns: 1fr; gap: 5px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>All India Govt Jobs</h1>
+    <p>Latest Government Jobs | Admit Cards | Results | Answer Keys | Admissions</p>
+  </header>
 
-1. MAIN CATEGORIES
-- Latest Government Jobs
-- Central Government Jobs
-- State Government Jobs for all Indian states and union territories
-- SSC Jobs: SSC CGL, CHSL, MTS, GD, CPO and other exams
-- Railway Jobs: RRB NTPC, Group D, ALP, Technician and other recruitment
-- UPSC and State PSC examinations
-- Banking Jobs: IBPS, SBI, RBI and other banks
-- Police, Defence, Army, Air Force, Navy and paramilitary recruitment
-- Teaching Jobs: CTET, TET, KVS, NVS and other vacancies
-- PSU Jobs, apprenticeships, internships and government contractual jobs
-- Government admissions, entrance exams, scholarships and counselling
+  <nav aria-label="मुख्य नेविगेशन">
+    <a href="#home">Home</a>
+    <a href="#latest-jobs">Latest Jobs</a>
+    <a href="#admit-cards">Admit Cards</a>
+    <a href="#results">Results</a>
+    <a href="#answer-keys">Answer Keys</a>
+    <a href="#admissions">Admissions</a>
+    <a href="#documents">Documents</a>
+  </nav>
 
-2. DEDICATED INFORMATION SECTIONS
-- Latest Notifications
-- Online Application Start and Last Dates
-- Admit Cards
-- Exam Dates and Exam Schedules
-- Answer Keys
-- Results and Merit Lists
-- Application Status
-- Syllabus and Exam Patterns
-- Previous Year Question Papers
-- Eligibility Criteria and Age Limits
-- Application Fees and Vacancy Details
-- Required Documents
-- Cut-off Marks and Selection Process
-- Important Forms, Certificates and Official Documents
+  <main class="container" id="home">
+    <div class="search-box">
+      <input id="searchInput" type="search" placeholder="Job, exam, department या state खोजें..." aria-label="नौकरी खोजें">
+      <button type="button" id="searchButton">Search</button>
+    </div>
 
-3. HOMEPAGE DESIGN
-Create a clean homepage with a top navigation bar, website logo, search box, language selector, latest updates ticker, and clearly organized information sections.
-Display separate tables or cards for Latest Jobs, Admit Cards, Results, Answer Keys, Admissions and Important Notifications.
-Every listing should show the post name, recruiting organization, notification date, application deadline, eligibility summary, and current status.
-Include relevant links such as View Details, Official Notification, Apply Online, Download Admit Card, Check Result and Download Answer Key wherever applicable.
+    <div class="notice">
+      <strong>महत्वपूर्ण सूचना:</strong> आवेदन करने या कोई दस्तावेज डाउनलोड करने से पहले संबंधित विभाग की आधिकारिक वेबसाइट पर जानकारी जरूर सत्यापित करें।
+    </div>
 
-4. SEARCH AND FILTERS
-Add a search system that lets users search by job title, department, state, qualification, category, organization and application deadline.
-Add filters for 10th pass, 12th pass, ITI, Diploma, Graduate, Postgraduate, age eligibility and job type.
+    <section class="grid" aria-label="मुख्य कैटेगरी">
+      <article class="card" id="latest-jobs">
+        <h2>Latest Government Jobs</h2>
+        <ul>
+          <li><a href="#job-list">Central Government Jobs</a></li>
+          <li><a href="#job-list">State Government Jobs</a></li>
+          <li><a href="#job-list">SSC Recruitment</a></li>
+          <li><a href="#job-list">Railway Recruitment</a></li>
+          <li><a href="#job-list">Banking Jobs</a></li>
+          <li><a href="#job-list">Police & Defence Jobs</a></li>
+          <li><a href="#job-list">Teaching & PSU Jobs</a></li>
+        </ul>
+      </article>
 
-5. JOB DETAIL PAGES
-Each job should have a dedicated page containing an overview, important dates, vacancy details, eligibility, age limit, application fee, selection process, syllabus, required documents, official notification link and application link.
+      <article class="card" id="admit-cards">
+        <h2>Admit Cards</h2>
+        <ul>
+          <li><a href="#job-list">SSC Admit Cards</a></li>
+          <li><a href="#job-list">Railway Admit Cards</a></li>
+          <li><a href="#job-list">Police Exam Admit Cards</a></li>
+          <li><a href="#job-list">Teaching Exam Admit Cards</a></li>
+          <li><a href="#job-list">Other Exam Admit Cards</a></li>
+        </ul>
+      </article>
 
-6. ADMIN DASHBOARD
-Create a secure admin dashboard where the website owner can add, edit, publish, schedule and delete job listings, notifications, results, admit cards, answer keys and admissions.
-Include categories, tags, featured posts, expiry dates, source URLs and publication status.
+      <article class="card" id="results">
+        <h2>Results & Merit Lists</h2>
+        <ul>
+          <li><a href="#job-list">Latest Exam Results</a></li>
+          <li><a href="#job-list">Final Results</a></li>
+          <li><a href="#job-list">Merit Lists</a></li>
+          <li><a href="#job-list">Cut-off Marks</a></li>
+          <li><a href="#job-list">Application Status</a></li>
+        </ul>
+      </article>
 
-7. AUTOMATIC UPDATES AND VERIFICATION
-Design a reliable system to collect and update recruitment information from official government websites and authorized public sources using permitted APIs, RSS feeds or compliant data integrations.
-Verify information against official sources before publication. Store the original source URL, publication date, last verified date and update status.
-Never invent vacancies, dates, results, application links or notifications. Clearly mark unverified information and send it for admin review.
-Do not bypass CAPTCHA, authentication or website access restrictions.
-If no permitted data feed is available, provide a manual admin workflow and clearly explain the limitation.
+      <article class="card" id="answer-keys">
+        <h2>Answer Keys</h2>
+        <ul>
+          <li><a href="#job-list">Provisional Answer Keys</a></li>
+          <li><a href="#job-list">Final Answer Keys</a></li>
+          <li><a href="#job-list">Objection / Challenge Links</a></li>
+          <li><a href="#job-list">Question Papers</a></li>
+        </ul>
+      </article>
 
-8. TECHNICAL REQUIREMENTS
-Use a modern, maintainable website architecture with a responsive frontend, secure backend, database, admin authentication, server-side validation, SEO-friendly URLs, sitemap, robots.txt, structured metadata and fast page loading.
-Make the website accessible on Android phones, tablets, laptops and desktop computers.
-Protect personal information, use HTTPS, secure admin sessions and regular backups.
-Do not expose API keys or secrets in frontend code.
+      <article class="card" id="admissions">
+        <h2>Admissions & Entrance Exams</h2>
+        <ul>
+          <li><a href="#job-list">University Admissions</a></li>
+          <li><a href="#job-list">Entrance Exam Forms</a></li>
+          <li><a href="#job-list">Counselling Updates</a></li>
+          <li><a href="#job-list">Scholarships</a></li>
+        </ul>
+      </article>
 
-9. MONETIZATION
-Keep space for clearly labelled Google AdSense advertisements, subject to approval and applicable policies. Do not use misleading download buttons or intrusive pop-ups.
+      <article class="card" id="documents">
+        <h2>Documents & Exam Info</h2>
+        <ul>
+          <li><a href="#job-list">Syllabus & Exam Pattern</a></li>
+          <li><a href="#job-list">Previous Year Papers</a></li>
+          <li><a href="#job-list">Application Forms</a></li>
+          <li><a href="#job-list">Certificates & Document Lists</a></li>
+          <li><a href="#job-list">Eligibility & Age Criteria</a></li>
+        </ul>
+      </article>
+    </section>
 
-10. LANGUAGE AND USER EXPERIENCE
-Support Hindi and English. Use simple Hindi for Indian students. Make the website easy to navigate, even for first-time users.
-Add About Us, Contact Us, Privacy Policy, Disclaimer, Terms and Conditions and official-source verification information.
+    <h2 class="section-title">Latest Updates</h2>
+    <p class="muted">नीचे केवल डेमो एंट्री हैं। असली भर्ती की जानकारी और लिंक एडमिन द्वारा आधिकारिक स्रोत से जोड़ने होंगे।</p>
+    <section class="job-list" id="job-list" aria-label="नौकरी सूची">
+      <div class="job-row searchable-item">
+        <div><strong>Demo Recruitment Listing 1</strong><div class="muted">विभाग: Demo Department</div></div>
+        <div><span class="tag">Notification</span><div class="muted">तारीख: सत्यापन बाकी</div></div>
+        <div><strong>Last Date</strong><div class="muted">आधिकारिक स्रोत देखें</div></div>
+        <button type="button" onclick="showDemoNotice()">View Details</button>
+      </div>
+      <div class="job-row searchable-item">
+        <div><strong>Demo Admit Card Listing</strong><div class="muted">परीक्षा: Demo Exam</div></div>
+        <div><span class="tag">Admit Card</span><div class="muted">तारीख: सत्यापन बाकी</div></div>
+        <div><strong>Status</strong><div class="muted">डेमो डेटा</div></div>
+        <button type="button" onclick="showDemoNotice()">View Details</button>
+      </div>
+      <div class="job-row searchable-item">
+        <div><strong>Demo Result Listing</strong><div class="muted">परीक्षा: Demo Exam</div></div>
+        <div><span class="tag">Result</span><div class="muted">तारीख: सत्यापन बाकी</div></div>
+        <div><strong>Status</strong><div class="muted">डेमो डेटा</div></div>
+        <button type="button" onclick="showDemoNotice()">View Details</button>
+      </div>
+      <div class="empty" id="emptyMessage">कोई मैचिंग एंट्री नहीं मिली। दूसरा शब्द खोजें।</div>
+    </section>
 
-11. FINAL DELIVERY REQUIREMENTS
-Build a functional government jobs information portal, not just a static design. Include a working search, database-backed listings, admin dashboard and a reliable official-source update workflow.
-Provide sample/demo listings clearly labelled as demo data, not real vacancies.
-Explain any external API credentials, paid services, hosting, domain or other setup needed to activate each feature.
-Make sure all important buttons and links work, and show a helpful empty state when no data is available.
+    <h2 class="section-title">Job Details में क्या-क्या होगा?</h2>
+    <section class="card">
+      <p>हर भर्ती के अलग पेज में ये जानकारी जोड़ी जा सकती है:</p>
+      <ul>
+        <li>विभाग और पद का नाम</li>
+        <li>कुल पद, योग्यता और आयु सीमा</li>
+        <li>आवेदन शुरू और अंतिम तारीख</li>
+        <li>आवेदन शुल्क और चयन प्रक्रिया</li>
+        <li>सिलेबस, परीक्षा पैटर्न और जरूरी दस्तावेज</li>
+        <li>आधिकारिक नोटिफिकेशन, आवेदन, एडमिट कार्ड और रिजल्ट लिंक</li>
+        <li>आधिकारिक स्रोत URL और आखिरी बार सत्यापन की तारीख</li>
+      </ul>
+    </section>
+
+    <h2 class="section-title">Admin Dashboard — आगे जोड़ा जाने वाला फीचर</h2>
+    <section class="card">
+      <p>एडमिन डैशबोर्ड से वेबसाइट का मालिक नई भर्ती जोड़ सके, पुरानी जानकारी अपडेट कर सके और नोटिफिकेशन, एडमिट कार्ड, रिजल्ट व आंसर की प्रकाशित कर सके। इस सुविधा के लिए सुरक्षित लॉगिन, backend और database बनाना जरूरी है।</p>
+      <p><strong>Automatic Updates:</strong> सरकारी वेबसाइटों से अपडेट के लिए अनुमत API/RSS या अन्य स्वीकृत इंटीग्रेशन सेट करें। हर जानकारी को आधिकारिक स्रोत से सत्यापित किए बिना वास्तविक भर्ती के रूप में प्रकाशित न करें।</p>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>All India Govt Jobs</strong></p>
+    <p>About Us | Contact Us | Privacy Policy | Disclaimer | Terms & Conditions</p>
+    <p class="muted" style="color:#d0d8e3">यह शुरुआती HTML टेम्पलेट है। यह अपने आप लाइव भर्ती डेटा नहीं लाता।</p>
+  </footer>
+
+  <script>
+    function showDemoNotice() {
+      alert('यह डेमो एंट्री है। असली भर्ती की जानकारी और आधिकारिक लिंक जोड़ने के बाद ही इसका उपयोग करें।');
+    }
+
+    function filterListings() {
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      const items = document.querySelectorAll('.searchable-item');
+      let visible = 0;
+      items.forEach(item => {
+        const match = item.textContent.toLowerCase().includes(query);
+        item.style.display = match ? 'grid' : 'none';
+        if (match) visible++;
+      });
+      document.getElementById('emptyMessage').style.display = visible ? 'none' : 'block';
+    }
+
+    document.getElementById('searchButton').addEventListener('click', filterListings);
+    document.getElementById('searchInput').addEventListener('input', filterListings);
+    document.getElementById('searchInput').addEventListener('keydown', event => {
+      if (event.key === 'Enter') filterListings();
+    });
+  </script>
+</body>
+  </html>
